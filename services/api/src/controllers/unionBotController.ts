@@ -7,7 +7,11 @@ import {UnionNamesRepository} from '../infrastructure/repositories/UnionNamesRep
 
 unionBot.on('message', async (msg: TelegramBot.Message) => {
     const chatId = msg.chat.id;
-    const lang = msg.from.language_code ?? 'ru';
+    const lang = 'ru';
+
+    if (msg.text == '/start') {
+        return unionBot.sendMessage(chatId, localeService.translate({phrase: 'start', locale: lang}));
+    }
 
     const name = String(msg.text);
     const namesRepository = getCustomRepository(UnionNamesRepository);

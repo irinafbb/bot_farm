@@ -1,4 +1,5 @@
 {
     "not_found": "No union members found with this surname:",
-    "found": "Union members with surname" 
+    "found": "Union members with surname",
+    "start": "Welcome to the ad director union bot! Please, send a director's SURNAME to learn if they are a union member:"
 }

@@ -18,7 +18,7 @@ if (regWebhook) {
 
 const localeService = new LocaleService({
     locales: ['en', 'ru'],
-    defaultLocale: 'en',
+    defaultLocale: 'ru',
     updateFiles: false,
     directory: join(__dirname, 'infrastructure/locales'),
 });
