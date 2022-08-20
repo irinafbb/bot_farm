@@ -1,0 +1,14 @@
+{
+    "type": "postgres",
+    "host": "172.10.0.13",
+    "port": 5432,
+    "username": "botfarm",
+    "password": "botfarm",
+    "database": "botfarm_db",
+    "schema": "public",
+    "entities": ["dist/infrastructure/entities/*.js"],
+    "migrations": ["dist/infrastructure/migrations/*.js"],
+    "cli": {
+        "migrationsDir": "src/infrastructure/migrations/"
+    }
+}
