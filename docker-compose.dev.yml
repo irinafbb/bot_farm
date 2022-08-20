@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+    api:
+        build: ./services/api
+        expose:
+            - 3000
+        env_file:
+            - .dev.env
+        depends_on:
+            - db
+        volumes:
+            - ./services/api/src:/home/app/api/src
+            - ./services/api/ormconfig.json:/home/app/api/ormconfig.json
+            - ./services/api/tsconfig.json:/home/app/api/tsconfig.json
+            - ./services/api/package.json:/home/app/api/package.json
+        networks:
+            botfarm:
+                ipv4_address: 172.10.0.14
+    
+    db:
+        image: postgres:12.3-alpine
+        ports:
+            - 5433:5432
+        env_file:
+            - .dev.env
+        restart: unless-stopped
+        volumes:
+            - ./docker/startup/init-postgresql.sh:/docker-entrypoint-initdb.d/init-postgresql.sh
+        networks:
+            botfarm:
+                ipv4_address: 172.10.0.13
+      
+    nginx:
+        build: ./services/nginx
+        ports:
+           - 5050:80
+        networks:
+            botfarm:
+                ipv4_address: 172.10.0.6   
+  
+networks:
+    botfarm:
+        driver: bridge
+        ipam:
+            config:
+                 - subnet: 172.10.0.0/28
