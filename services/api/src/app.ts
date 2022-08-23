@@ -7,7 +7,7 @@ const app: Application = express();
 
 const start = async () => {
     const connection = await setupDatabaseConnection(process.env.NODE_ENV == 'development', false);
-    await seedDb(connection);
+    // await seedDb(connection);
     await setupServer(app);
     app.listen(PORT, () => {
         console.log(`server running at port: ${PORT}`);
